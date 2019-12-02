@@ -185,6 +185,7 @@
 
 
     (function(){
+      var triangleSize = 10;
       //------------------------------
       // Mesh Properties
       //------------------------------
@@ -192,8 +193,8 @@
         width: 1.2,
         height: 1.2,
         depth: 7,
-        segments: 17,
-        slices: 9, // TODO: ratio
+        segments: Math.ceil((document.documentElement.clientWidth / document.documentElement.clientHeight) * triangleSize),
+        slices: triangleSize,
         xRange: 0.3,
         yRange: 0.2,
         zRange: 1.0,
@@ -490,6 +491,7 @@
       }
 
       function onWindowResize(event) {
+        MESH.segments = Math.ceil((document.documentElement.clientWidth / document.documentElement.clientHeight) * triangleSize);
         resize(container.offsetWidth, container.offsetHeight);
         render();
       }
